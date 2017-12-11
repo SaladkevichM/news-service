@@ -16,7 +16,7 @@ public class Utility {
 
         Properties prop = new Properties();
         try (InputStream input =
-                Utility.class.getClassLoader().getResourceAsStream("newsapi.properties")) {
+                Utility.class.getClassLoader().getResourceAsStream("api.properties")) {
 
             // load a properties file
             prop.load(input);

@@ -2,7 +2,7 @@ package com.news.rest.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.news.core.NewsAPIOrgPuller;
+import com.news.core.NewsApiOrg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class RestServer {
 
-    public static final NewsAPIOrgPuller API_INSTANCE = new NewsAPIOrgPuller();
+    public static final NewsApiOrg API_INSTANCE = new NewsApiOrg();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

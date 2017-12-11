@@ -3,45 +3,40 @@ package com.news.beans;
 import java.util.Date;
 
 public class Article {
-
-    private String name;
-    private String content;
-    private Date time;
-
-    public String getName() {
-        return name;
+    
+    private String title;
+    private String description;
+    private Date publishedAt;
+    
+    public String getTitle() {
+        return title;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
-
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public Date getTime() {
-        return time;
+    public Date getPublishedAt() {
+        return publishedAt;
     }
-
-    public void setTime(Date time) {
-        this.time = time;
+    public void setPublishedAt(Date publishedAt) {
+        this.publishedAt = publishedAt;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((content == null) ? 0 : content.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((time == null) ? 0 : time.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((publishedAt == null) ? 0 : publishedAt.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -51,27 +46,22 @@ public class Article {
         if (getClass() != obj.getClass())
             return false;
         Article other = (Article) obj;
-        if (content == null) {
-            if (other.content != null)
+        if (description == null) {
+            if (other.description != null)
                 return false;
-        } else if (!content.equals(other.content))
+        } else if (!description.equals(other.description))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (publishedAt == null) {
+            if (other.publishedAt != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!publishedAt.equals(other.publishedAt))
             return false;
-        if (time == null) {
-            if (other.time != null)
+        if (title == null) {
+            if (other.title != null)
                 return false;
-        } else if (!time.equals(other.time))
+        } else if (!title.equals(other.title))
             return false;
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Article [name=" + name + ", content=" + content + ", time=" + time + "]";
-    }
-
+   
 }
