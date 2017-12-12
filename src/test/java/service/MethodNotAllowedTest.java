@@ -2,7 +2,6 @@ package service;
 
 import com.news.util.Utility;
 import junit.framework.Assert;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -14,14 +13,13 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class StatusCode {
+public class MethodNotAllowedTest {
 
     HttpUriRequest request;
 
     @Before
     public void setUp() {
-        String name = RandomStringUtils.randomAlphabetic(8);
-        request = new HttpGet(Utility.getProperty("rest_test_url") + name);
+        request = new HttpGet(Utility.getProperty("root_test_url"));
     }
 
     @Test
@@ -30,7 +28,7 @@ public class StatusCode {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         // Then
-        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_NOT_FOUND);
+        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_METHOD_NOT_ALLOWED);
     }
 
 }

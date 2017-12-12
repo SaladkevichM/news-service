@@ -12,6 +12,7 @@
 		<json.ver>1.1.1</json.ver>
 		<commons.ver>3.0</commons.ver>
 		<httpclient.ver>4.5.4</httpclient.ver>
+		<gson.ver>2.8.2</gson.ver>
 	</properties>
 
 	<dependencies>
@@ -63,6 +64,13 @@
 			<artifactId>httpclient</artifactId>
 			<version>${httpclient.ver}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.ver}</version>
+		</dependency>
+
 
 	</dependencies>
 

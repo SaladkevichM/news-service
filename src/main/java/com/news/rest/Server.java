@@ -1,19 +1,15 @@
 package com.news.rest;
 
-import com.news.beans.Article;
-import com.news.beans.Source;
 import com.news.core.HeadlineService;
 import com.news.core.SourceService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -32,10 +28,9 @@ public class Server {
         Map<String, String> params = new HashMap<>();
         params.put("sources", sources);
 
-        List<Article> articles = HEADLINES.getNews(params, pageSize, page);
-        GenericEntity<List<Article>> entity = new GenericEntity<List<Article>>(articles) {};
-
-        return Response.ok(entity).build();
+        Map<String, String> response = HEADLINES.getNews(params, pageSize, page);
+        return Response.ok(response.get("result")).status(Integer.valueOf(response.get("code")))
+                .build();
     }
 
     @GET
@@ -44,10 +39,9 @@ public class Server {
     public Response getSources(@QueryParam("page") Integer page,
             @QueryParam("page_size") Integer pageSize) {
 
-        List<Source> sources = SOURCES.getSources(pageSize, page);
-        GenericEntity<List<Source>> entity = new GenericEntity<List<Source>>(sources) {};
-
-        return Response.ok(entity).build();
+        Map<String, String> response = SOURCES.getSources(pageSize, page);
+        return Response.ok(response.get("result")).status(Integer.valueOf(response.get("code")))
+                .build();
     }
 
 }

@@ -1,11 +1,15 @@
 #HOW TO USE
 
-GET http://localhost:8080/service/news?sources=bbc-news,abc-news&page=2&page_size=3
+GET http://localhost:8080/service/news?sources=bbc-news
+	http://localhost:8080/service/news?sources=bbc-news,abc-news&page=2&page_size=3
 
 	- fetch news from some source	
-	@sources - required parameter. default value - "bbc-news"	
+	
+	Required parameters:
+		- @sources. default - "bbc-news"	
 
-GET http://localhost:8080/service/sources?page=2&page_size=5
+GET http://localhost:8080/service/sources
+	http://localhost:8080/service/sources?page=2&page_size=5
 
 	- fetch all news sources
 	

@@ -1,18 +1,21 @@
 package com.news.util;
 
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-
+import org.apache.http.HttpException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.ws.http.HTTPException;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Some utility functions
@@ -46,7 +49,7 @@ public final class Utility {
         }
 
         if (pageSize <= 0 || page <= 0) {
-            throw new IllegalArgumentException("invalid page size: " + pageSize);
+            throw new IllegalArgumentException("Invalid page or pageSize");
         }
 
         int fromIndex = (page - 1) * pageSize;
@@ -59,20 +62,36 @@ public final class Utility {
     }
 
     /**
+     * JSON string that is described an error.
+     * 
+     * @param code
+     * @param message
+     * @return json String
+     */
+    public static String createError(Integer code, String message) {
+        Map<String, String> error = new HashMap<>();
+        error.put("code", code.toString());
+        error.put("message", message);
+        return new Gson().toJson(error);
+    }
+
+    /**
      * Call some REST service
      * 
      * @param url
      * @return json String
+     * @throws HttpException
      */
-    public static String sendRequest(String url) {
+    public static String sendRequest(String url) throws HttpException {
 
         Client client = new Client();
 
         WebResource resource = client.resource(url);
-        ClientResponse response = resource.accept("application/json").get(ClientResponse.class);
+        ClientResponse response =
+                resource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
-            throw new HTTPException(response.getStatus());
+            throw new HttpException(response.toString());
         }
 
         return response.getEntity(String.class);
