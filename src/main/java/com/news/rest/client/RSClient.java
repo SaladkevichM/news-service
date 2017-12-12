@@ -4,9 +4,9 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-public class RestClient {
+public class RSClient {
 
-    public static String doGet(String url) {
+    public static String getResponse(String url) {
 
         Client client = Client.create();
 
