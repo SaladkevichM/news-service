@@ -41,7 +41,9 @@ public class HeadlineService implements ServiceURL {
         }
 
         // newest posts are shown on top
-        roll.sort((a1, a2) -> a2.getPublishedAt().compareTo(a1.getPublishedAt()));
+        if(!roll.isEmpty()) {
+            roll.sort((a1, a2) -> a2.getPublishedAt().compareTo(a1.getPublishedAt()));    
+        }        
 
         return Utility.getPage(roll, page, pageSize);
     }
