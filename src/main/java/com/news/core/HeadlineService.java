@@ -28,7 +28,7 @@ public class HeadlineService implements ServiceURL {
     public List<Article> getNews(Map<String, String> params, Integer pageSize, Integer page) {
 
         List<Article> roll = new ArrayList<>();
-        String plainJson = Utility.getResponse(populateURL(params));
+        String plainJson = Utility.sendRequest(populateURL(params));
 
         try {
 

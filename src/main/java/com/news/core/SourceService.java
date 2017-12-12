@@ -27,7 +27,7 @@ public class SourceService implements ServiceURL {
     public List<Source> getSources(Integer pageSize, Integer page) {
 
         List<Source> roll = new ArrayList<>();
-        String plainJson = Utility.getResponse(getServiceURL());
+        String plainJson = Utility.sendRequest(getServiceURL());
 
         try {
 

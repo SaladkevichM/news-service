@@ -20,7 +20,7 @@ import javax.xml.ws.http.HTTPException;
  * @author Mikita_Saladkevich
  *
  */
-public class Utility {
+public final class Utility {
 
     private Utility() {
         // prevent to create instance of Utility
@@ -64,7 +64,7 @@ public class Utility {
      * @param url
      * @return json String
      */
-    public static String getResponse(String url) {
+    public static String sendRequest(String url) {
 
         Client client = new Client();
 

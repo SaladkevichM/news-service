@@ -10,6 +10,8 @@
 		<jersey.ver>1.19.4</jersey.ver>
 		<jackson.ver>2.2.3</jackson.ver>
 		<json.ver>1.1.1</json.ver>
+		<commons.ver>3.0</commons.ver>
+		<httpclient.ver>4.5.4</httpclient.ver>
 	</properties>
 
 	<dependencies>
@@ -48,6 +50,18 @@
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>${json.ver}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons.ver}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.ver}</version>
 		</dependency>
 
 	</dependencies>
