@@ -36,7 +36,7 @@ public class SortingListTest {
     }
 
     @Test
-    public void sortHeadlinesList()
+    public void getNews_Default_WillBeSortByDate()
             throws HttpException, JsonParseException, JsonMappingException, IOException {
 
         when(mockedCaller.sendRequest(service.getServiceURL())).thenReturn(articles);

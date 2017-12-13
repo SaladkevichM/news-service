@@ -32,11 +32,8 @@ public class NotFoundTest {
     }
 
     @Test
-    public void test() throws ClientProtocolException, IOException {
-        // When
+    public void response_BaseUrl_NotFound() throws ClientProtocolException, IOException {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
-
-        // Then
         Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_NOT_FOUND);
     }
 

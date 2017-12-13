@@ -26,7 +26,7 @@ public class InternalErrorTest {
     }
 
     @Test
-    public void test() throws ClientProtocolException, IOException {
+    public void responseApi_InvQuery_InternalError() throws ClientProtocolException, IOException {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),

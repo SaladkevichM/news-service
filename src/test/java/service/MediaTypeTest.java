@@ -36,7 +36,7 @@ public class MediaTypeTest {
     }
 
     @Test
-    public void testHeadlines() throws ClientProtocolException, IOException {
+    public void mediaType_Headlines_Json() throws ClientProtocolException, IOException {
         HttpResponse response = HttpClientBuilder.create().build().execute(requestHeadlines);
 
         String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
@@ -44,7 +44,7 @@ public class MediaTypeTest {
     }
 
     @Test
-    public void testSources() throws ClientProtocolException, IOException {
+    public void mediaType_Sources_Json() throws ClientProtocolException, IOException {
         HttpResponse response = HttpClientBuilder.create().build().execute(requestSources);
 
         String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();

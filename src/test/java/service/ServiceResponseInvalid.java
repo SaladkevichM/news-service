@@ -26,7 +26,7 @@ public class ServiceResponseInvalid {
     }
 
     @Test
-    public void invalidJSON() throws HttpException {
+    public void getNews_InvalidJson_InternalError() throws HttpException {
         when(mockedCaller.sendRequest(service.getServiceURL())).thenReturn("%%%");
         service = new HeadlineService(mockedCaller);
         Map<String, String> map = service.getNews(params, null, null);

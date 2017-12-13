@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class PropertyAccessTest {
 
     @Test
-    public void test() {
+    public void Properties_File_WillBeOpened() {
         boolean opened = true;
         try (InputStream input =
                 Utility.class.getClassLoader().getResourceAsStream("api.properties")) {

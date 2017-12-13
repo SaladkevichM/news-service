@@ -25,9 +25,8 @@ public class ApiAccessTest {
     }
 
     @Test
-    public void test() throws ClientProtocolException, IOException {
+    public void responseApi_Default_StatusOk() throws ClientProtocolException, IOException {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
-
         Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
     }
 
