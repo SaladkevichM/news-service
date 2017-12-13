@@ -17,7 +17,7 @@ GET http://localhost:8080/service/sources
 
 If internal appication exception occured - you'd get HTTP code 500 with JSON explanation of the problem.<br/>   
 	ex. http://localhost:8080/service/news?sources=bbc-news&page=-1&page_size=2
-	
+		
 	{
 		"code": "500",
 		"message": "IllegalArgument. Invalid page or pageSize."

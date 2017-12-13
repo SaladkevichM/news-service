@@ -3,6 +3,12 @@ package com.news.core;
 import com.news.util.Utility;
 import java.util.Map;
 
+/**
+ * Contract to get service URL
+ * 
+ * @author Mikita_Saladkevich
+ *
+ */
 public interface ServiceURL {
 
     public abstract String getServiceURL();
