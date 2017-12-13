@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,12 @@ public class HeadlineService implements ServiceURL {
 
             String json = serviceCaller.sendRequest(populateURL(params));
             JSONObject objectJson = (JSONObject) new JSONParser().parse(json);
-            String articles = objectJson.get("articles").toString();
 
+            if (objectJson.get("articles") == null) {
+                throw new HttpException("ExtService response parsing failure");
+            }
+
+            String articles = objectJson.get("articles").toString();
             List<Article> roll =
                     new ObjectMapper().readValue(articles, new TypeReference<List<Article>>() {});
 

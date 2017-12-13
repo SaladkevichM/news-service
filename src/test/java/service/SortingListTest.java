@@ -23,6 +23,7 @@ public class SortingListTest {
 
     String articles = "";
     ServiceCaller mockedCaller;
+    HeadlineService service;
     ObjectMapper mapper = new ObjectMapper();
 
     Map<String, String> params = new HashMap<>();
@@ -30,14 +31,21 @@ public class SortingListTest {
     @Before
     public void setUp() throws Exception {
         mockedCaller = mock(ServiceCaller.class);
+        service = new HeadlineService(mockedCaller);
         articles =
                 "{\"articles\":[{\"title\":\"2\",\"publishedAt\":\"2017-10-13T05:55:30Z\"},{\"title\":\"1\",\"publishedAt\":\"2017-11-13T07:33:42Z\"}]}";
+    }
+    
+    @Test(expected = HttpException.class)
+    public void invalidJSON() throws HttpException {        
+        when(mockedCaller.sendRequest(service.getServiceURL())).thenReturn("%%%");
+        service = new HeadlineService(mockedCaller);
+        Map<String, String> map = service.getNews(params, null, null);        
     }
 
     @Test
     public void sort() throws HttpException, JsonParseException, JsonMappingException, IOException {
-
-        HeadlineService service = new HeadlineService(mockedCaller);
+        
         when(mockedCaller.sendRequest(service.getServiceURL())).thenReturn(articles);
         service = new HeadlineService(mockedCaller);
 
