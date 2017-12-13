@@ -15,7 +15,7 @@ GET http://localhost:8080/service/sources
 <br/>  	
 #ABOUT ERRORS
 
-If internal application exception occured - you'd get HTTP code 500 with JSON explanation of the problem.<br/>   
+If internal application exception occured - you'd get HTTP code 500 & JSON explanation in response body.<br/>   
 	ex. http://localhost:8080/service/news?sources=bbc-news&page=-1&page_size=2
 		
 	{
@@ -23,7 +23,7 @@ If internal application exception occured - you'd get HTTP code 500 with JSON ex
 		"message": "IllegalArgument. Invalid page or pageSize."
 	}
 	
-If you tried to GET from unknown path - you'd get HTTP 40X response.<br/>   
+If you tried to GET from unknown path - you'd get HTTP 40X code.<br/>   
 	ex. http://localhost:8080/service/T%T%T% - 400 Bad Request<br/>   
 		http://localhost:8080/service        - 405 Method Not Allowed<br/>   
 		http://localhost:8080/service/SDFSDF - 404 Not Found<br/>   
