@@ -27,6 +27,16 @@ public class SourceService implements ServiceURL {
 
     private Logger logger = Logger.getLogger(SourceService.class.getName());
     private ObjectMapper mapper = new ObjectMapper();
+    private ServiceCaller serviceCaller;
+
+    /**
+     * Constructor receives ServiceCaller object
+     * 
+     * @param caller
+     */
+    public SourceService(ServiceCaller caller) {
+        serviceCaller = caller;
+    }
 
     /**
      * Fetch all sources. Do pagination by @page & @pageSize
@@ -38,7 +48,7 @@ public class SourceService implements ServiceURL {
 
         try {
 
-            String json = Utility.sendRequest(getServiceURL());
+            String json = serviceCaller.sendRequest(getServiceURL());
             JSONObject objectJson = (JSONObject) new JSONParser().parse(json);
             String articles = objectJson.get("sources").toString();
 
@@ -51,8 +61,7 @@ public class SourceService implements ServiceURL {
 
             result.put("code",
                     String.valueOf(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()));
-            result.put("result",
-                    Utility.createError(500, internalException.getMessage()));
+            result.put("result", Utility.createError(500, internalException.getMessage()));
 
         }
 

@@ -26,6 +26,16 @@ public class HeadlineService implements ServiceURL {
 
     private Logger logger = Logger.getLogger(HeadlineService.class.getName());
     private ObjectMapper mapper = new ObjectMapper();
+    private ServiceCaller serviceCaller;
+
+    /**
+     * Constructor receives ServiceCaller object
+     * 
+     * @param caller
+     */
+    public HeadlineService(ServiceCaller caller) {
+        serviceCaller = caller;
+    }
 
     /**
      * Fetch articles from source. Do pagination by @page & @pageSize
@@ -37,7 +47,7 @@ public class HeadlineService implements ServiceURL {
 
         try {
 
-            String json = Utility.sendRequest(populateURL(params));
+            String json = serviceCaller.sendRequest(populateURL(params));
             JSONObject objectJson = (JSONObject) new JSONParser().parse(json);
             String articles = objectJson.get("articles").toString();
 
@@ -54,8 +64,7 @@ public class HeadlineService implements ServiceURL {
 
             result.put("code",
                     String.valueOf(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()));
-            result.put("result",
-                    Utility.createError(500, internalException.getMessage()));
+            result.put("result", Utility.createError(500, internalException.getMessage()));
         }
 
         return result;
@@ -65,11 +74,11 @@ public class HeadlineService implements ServiceURL {
      * Create API request URL from .properties file
      * 
      * @return String API_URL
-     * @throws HttpException 
+     * @throws HttpException
      */
     public String getServiceURL() throws HttpException {
         return Utility.getProperty("headlines_url") + Utility.getProperty("apikey_prefix")
-        + Utility.getProperty("apikey_token");
+                + Utility.getProperty("apikey_token");
     }
 
 }

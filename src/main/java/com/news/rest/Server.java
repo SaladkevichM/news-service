@@ -1,5 +1,6 @@
 package com.news.rest;
 
+import com.news.core.ServiceCaller;
 import com.news.core.HeadlineService;
 import com.news.core.SourceService;
 
@@ -15,14 +16,15 @@ import javax.ws.rs.core.Response;
 
 /**
  * Controller of the REST service
+ * 
  * @author Mikita_Saladkevich
  *
  */
 @Path("/")
 public class Server {
 
-    public static final HeadlineService HEADLINES = new HeadlineService();
-    public static final SourceService SOURCES = new SourceService();
+    public static final HeadlineService HEADLINES = new HeadlineService(new ServiceCaller());
+    public static final SourceService SOURCES = new SourceService(new ServiceCaller());
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
