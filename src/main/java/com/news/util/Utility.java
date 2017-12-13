@@ -1,9 +1,6 @@
 package com.news.util;
 
 import com.google.gson.Gson;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import org.apache.http.HttpException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,8 +10,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.ws.rs.core.MediaType;
 
 /**
  * Some utility functions
@@ -74,28 +69,6 @@ public final class Utility {
         error.put("code", code.toString());
         error.put("message", message);
         return new Gson().toJson(error);
-    }
-
-    /**
-     * Call some REST service
-     * 
-     * @param url
-     * @return json String
-     * @throws HttpException
-     */
-    public static String sendRequest(String url) throws HttpException {
-
-        Client client = new Client();
-
-        WebResource resource = client.resource(url);
-        ClientResponse response =
-                resource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-
-        if (response.getStatus() != 200) {
-            throw new HttpException(response.toString());
-        }
-
-        return response.getEntity(String.class);
     }
 
     /**
