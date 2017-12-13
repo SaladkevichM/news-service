@@ -12,7 +12,3 @@ GET http://localhost:8080/service/sources
     http://localhost:8080/service/sources?page=2&page_size=5
 
 	- fetch all news sources
-	
-
-	
-	
