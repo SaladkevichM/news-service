@@ -38,8 +38,10 @@ public final class Utility {
      * @param page
      * @param pageSize
      * @return List<T>
+     * @throws HttpException
      */
-    public static <T> List<T> getPage(List<T> sourceList, Integer page, Integer pageSize) {
+    public static <T> List<T> getPage(List<T> sourceList, Integer page, Integer pageSize)
+            throws HttpException {
         if (page == null || pageSize == null) {
             return sourceList;
         }
@@ -49,7 +51,7 @@ public final class Utility {
         }
 
         if (pageSize <= 0 || page <= 0) {
-            throw new IllegalArgumentException("Invalid page or pageSize");
+            throw new HttpException("IllegalArgument. Invalid page or pageSize.");
         }
 
         int fromIndex = (page - 1) * pageSize;

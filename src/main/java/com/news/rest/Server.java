@@ -13,6 +13,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * Controller of the REST service
+ * @author Mikita_Saladkevich
+ *
+ */
 @Path("/")
 public class Server {
 
