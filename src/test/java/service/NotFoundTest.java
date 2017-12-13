@@ -3,6 +3,7 @@ package service;
 import com.news.util.Utility;
 import junit.framework.Assert;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -24,7 +25,7 @@ public class NotFoundTest {
     HttpUriRequest request;
 
     @Before
-    public void setUp() {
+    public void setUp() throws HttpException {
         request = new HttpGet(Utility.getProperty("root_test_url") + RandomStringUtils.randomAlphabetic(8));
     }
 

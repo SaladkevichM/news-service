@@ -3,6 +3,7 @@ package service;
 import static org.junit.Assert.*;
 
 import com.news.util.Utility;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -27,7 +28,7 @@ public class MediaTypeTest {
     HttpUriRequest requestSources;
 
     @Before
-    public void setUp() {
+    public void setUp() throws HttpException {
         requestHeadlines = new HttpGet(Utility.getProperty("headlines_test_url") + "?sources=" + Utility.getProperty("default_sources"));
         requestSources = new HttpGet(Utility.getProperty("sources_test_url"));
     }

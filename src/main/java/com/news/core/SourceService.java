@@ -64,7 +64,7 @@ public class SourceService implements ServiceURL {
      * 
      * @return String API_URL
      */
-    public String getServiceURL() {
+    public String getServiceURL() throws HttpException {
         return Utility.getProperty("sources_url") + Utility.getProperty("apikey_prefix")
                 + Utility.getProperty("apikey_token");
     }

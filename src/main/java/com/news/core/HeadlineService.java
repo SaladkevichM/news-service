@@ -65,8 +65,9 @@ public class HeadlineService implements ServiceURL {
      * Create API request URL from .properties file
      * 
      * @return String API_URL
+     * @throws HttpException 
      */
-    public String getServiceURL() {
+    public String getServiceURL() throws HttpException {
         return Utility.getProperty("headlines_url") + Utility.getProperty("apikey_prefix")
         + Utility.getProperty("apikey_token");
     }

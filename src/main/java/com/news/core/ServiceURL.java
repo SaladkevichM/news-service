@@ -1,6 +1,8 @@
 package com.news.core;
 
 import com.news.util.Utility;
+import org.apache.http.HttpException;
+
 import java.util.Map;
 
 /**
@@ -11,14 +13,15 @@ import java.util.Map;
  */
 public interface ServiceURL {
 
-    public abstract String getServiceURL();
+    public abstract String getServiceURL() throws HttpException;
 
     /**
      * Populate API_URL with query params
      * 
      * @return String URL with query params
+     * @throws HttpException
      */
-    default String populateURL(Map<String, String> params) {
+    default String populateURL(Map<String, String> params) throws HttpException {
         StringBuilder appendix = new StringBuilder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             appendix.append("&").append(entry.getKey()).append("=")

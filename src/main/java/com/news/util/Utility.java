@@ -7,7 +7,6 @@ import com.sun.jersey.api.client.WebResource;
 import org.apache.http.HttpException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +54,8 @@ public final class Utility {
         }
 
         int fromIndex = (page - 1) * pageSize;
-        if (sourceList.size() < fromIndex) {
-            return Collections.emptyList();
+        if (sourceList.size() < fromIndex) {            
+            throw new HttpException("IllegalArgument. Invalid page.");
         }
 
         // toIndex exclusive
@@ -104,8 +103,10 @@ public final class Utility {
      * 
      * @param name
      * @return String
+     * @throws HttpException
+     * @throws IOException
      */
-    public static String getProperty(String name) {
+    public static String getProperty(String name) throws HttpException {
 
         Properties prop = new Properties();
         try (InputStream input =
@@ -114,14 +115,18 @@ public final class Utility {
             // load a properties file
             prop.load(input);
 
+            if(prop.getProperty(name) == null) {
+                throw new HttpException("Property value not found: " + name);
+            }
+            
             // get the property value and print it out
             return prop.getProperty(name);
 
         } catch (IOException ex) {
             logger.log(Level.INFO, "Property file not found", ex);
+            throw new HttpException(ex.getMessage());
         }
 
-        return null;
     }
 
 }
