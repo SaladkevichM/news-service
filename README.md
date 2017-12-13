@@ -16,11 +16,11 @@ GET http://localhost:8080/service/sources
 #ABOUT ERRORS
 
 If internal exception occured - you'd get HTTP code 500 & JSON explanation in response body.<br/>   
-	ex. http://localhost:8080/service/news?sources=bbc-news&page=-1&page_size=2
+	ex. http://localhost:8080/service/news?sources=bbc-news&page=100&page_size=3
 		
 	{
 		"code": "500",
-		"message": "IllegalArgument. Invalid page or pageSize."
+		"message": "IllegalArgument. Invalid page."
 	}
 	
 If you tried to GET from unknown path - you'd get HTTP 40X code.<br/>   
