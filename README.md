@@ -15,7 +15,7 @@ GET http://localhost:8080/service/sources
 <br/>  	
 #ABOUT ERRORS
 
-If internal application exception occured - you'd get HTTP code 500 & JSON explanation in response body.<br/>   
+If internal exception occured - you'd get HTTP code 500 & JSON explanation in response body.<br/>   
 	ex. http://localhost:8080/service/news?sources=bbc-news&page=-1&page_size=2
 		
 	{
