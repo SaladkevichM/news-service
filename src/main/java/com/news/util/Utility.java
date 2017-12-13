@@ -54,7 +54,7 @@ public final class Utility {
         }
 
         int fromIndex = (page - 1) * pageSize;
-        if (sourceList.size() < fromIndex) {            
+        if (sourceList.size() < fromIndex) {
             throw new HttpException("IllegalArgument. Invalid page.");
         }
 
@@ -115,10 +115,10 @@ public final class Utility {
             // load a properties file
             prop.load(input);
 
-            if(prop.getProperty(name) == null) {
+            if (prop.getProperty(name) == null) {
                 throw new HttpException("Property value not found: " + name);
             }
-            
+
             // get the property value and print it out
             return prop.getProperty(name);
 
