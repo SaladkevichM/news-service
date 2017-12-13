@@ -1,8 +1,8 @@
 package com.news.rest;
 
-import com.news.core.ServiceCaller;
 import com.news.core.HeadlineService;
 import com.news.core.SourceService;
+import com.news.ext.ServiceCaller;
 
 import java.util.HashMap;
 import java.util.Map;

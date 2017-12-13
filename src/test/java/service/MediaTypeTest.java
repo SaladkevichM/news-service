@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Test case for MediaType JSON
+ * 
  * @author Mikita_Saladkevich
  *
  */
@@ -29,26 +30,23 @@ public class MediaTypeTest {
 
     @Before
     public void setUp() throws HttpException {
-        requestHeadlines = new HttpGet(Utility.getProperty("headlines_test_url") + "?sources=" + Utility.getProperty("default_sources"));
+        requestHeadlines = new HttpGet(Utility.getProperty("headlines_test_url") + "?sources="
+                + Utility.getProperty("default_sources"));
         requestSources = new HttpGet(Utility.getProperty("sources_test_url"));
     }
 
     @Test
     public void testHeadlines() throws ClientProtocolException, IOException {
-        // When
         HttpResponse response = HttpClientBuilder.create().build().execute(requestHeadlines);
 
-        // Then
         String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
         assertEquals(MediaType.APPLICATION_JSON, mimeType);
     }
-    
+
     @Test
     public void testSources() throws ClientProtocolException, IOException {
-        // When
         HttpResponse response = HttpClientBuilder.create().build().execute(requestSources);
 
-        // Then
         String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
         assertEquals(MediaType.APPLICATION_JSON, mimeType);
     }

@@ -3,12 +3,11 @@ package com.news.core;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.news.beans.Article;
+import com.news.ext.ServiceCaller;
 import com.news.util.Utility;
 import java.io.IOException;
 
 import org.apache.http.HttpException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
@@ -48,15 +47,8 @@ public class HeadlineService implements ServiceURL {
         try {
 
             String json = serviceCaller.sendRequest(populateURL(params));
-            JSONObject objectJson = (JSONObject) new JSONParser().parse(json);
-
-            if (objectJson.get("articles") == null) {
-                throw new HttpException("ExtService response parsing failure");
-            }
-
-            String articles = objectJson.get("articles").toString();
-            List<Article> roll =
-                    new ObjectMapper().readValue(articles, new TypeReference<List<Article>>() {});
+            List<Article> roll = new ObjectMapper().readValue(Utility.subItem(json, "articles"),
+                    new TypeReference<List<Article>>() {});
 
             // newest posts are shown on top
             roll.sort((a1, a2) -> a2.getPublishedAt().compareTo(a1.getPublishedAt()));
@@ -65,7 +57,6 @@ public class HeadlineService implements ServiceURL {
         } catch (ParseException | IOException | HttpException internalException) {
 
             logger.log(Level.SEVERE, "HeadlineService.getNews()", internalException);
-
             result.put("code",
                     String.valueOf(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()));
             result.put("result", Utility.createError(500, internalException.getMessage()));

@@ -2,14 +2,12 @@ package com.news.core;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.news.beans.Article;
 import com.news.beans.Source;
+import com.news.ext.ServiceCaller;
 import com.news.util.Utility;
 import java.io.IOException;
 
 import org.apache.http.HttpException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
@@ -49,16 +47,13 @@ public class SourceService implements ServiceURL {
         try {
 
             String json = serviceCaller.sendRequest(getServiceURL());
-            JSONObject objectJson = (JSONObject) new JSONParser().parse(json);
-            String articles = objectJson.get("sources").toString();
-
-            List<Article> roll = mapper.readValue(articles, new TypeReference<List<Source>>() {});
+            List<Source> roll = mapper.readValue(Utility.subItem(json, "sources"),
+                    new TypeReference<List<Source>>() {});
             result.put("result", mapper.writeValueAsString(Utility.getPage(roll, page, pageSize)));
 
         } catch (ParseException | IOException | HttpException internalException) {
 
             logger.log(Level.SEVERE, "SourceService.getSources()", internalException);
-
             result.put("code",
                     String.valueOf(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()));
             result.put("result", Utility.createError(500, internalException.getMessage()));

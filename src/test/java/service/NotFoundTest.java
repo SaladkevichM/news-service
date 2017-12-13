@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * Test case for 404 status
+ * 
  * @author Mikita_Saladkevich
  *
  */
@@ -26,7 +27,8 @@ public class NotFoundTest {
 
     @Before
     public void setUp() throws HttpException {
-        request = new HttpGet(Utility.getProperty("root_test_url") + RandomStringUtils.randomAlphabetic(8));
+        request = new HttpGet(
+                Utility.getProperty("root_test_url") + RandomStringUtils.randomAlphabetic(8));
     }
 
     @Test

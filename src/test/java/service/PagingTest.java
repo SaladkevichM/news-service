@@ -12,7 +12,7 @@ import java.util.List;
 public class PagingTest {
 
     @Test
-    public void select() throws HttpException {
+    public void selectPageFromList() throws HttpException {
 
         List<Integer> data = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Integer> expected = Arrays.asList(4, 5, 6);

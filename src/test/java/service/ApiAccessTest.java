@@ -28,8 +28,7 @@ public class ApiAccessTest {
     public void test() throws ClientProtocolException, IOException {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
-        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),
-                HttpStatus.SC_OK);
+        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
     }
 
 }

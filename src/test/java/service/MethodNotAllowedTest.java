@@ -29,7 +29,8 @@ public class MethodNotAllowedTest {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         // Then
-        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_METHOD_NOT_ALLOWED);
+        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),
+                HttpStatus.SC_METHOD_NOT_ALLOWED);
     }
 
 }

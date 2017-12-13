@@ -1,4 +1,4 @@
-package com.news.core;
+package com.news.ext;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;

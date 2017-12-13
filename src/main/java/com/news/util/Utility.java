@@ -2,6 +2,10 @@ package com.news.util;
 
 import com.google.gson.Gson;
 import org.apache.http.HttpException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -55,6 +59,23 @@ public final class Utility {
 
         // toIndex exclusive
         return sourceList.subList(fromIndex, Math.min(fromIndex + pageSize, sourceList.size()));
+    }
+
+    /**
+     * JSON subItem
+     * 
+     * @param json
+     * @param subname
+     * @return subitem String
+     * @throws ParseException
+     * @throws HttpException
+     */
+    public static String subItem(String json, String subname) throws ParseException, HttpException {
+        JSONObject object = (JSONObject) new JSONParser().parse(json);
+        if (object.get(subname) == null) {
+            throw new HttpException("Incompatible JSON structure.");
+        }
+        return object.get(subname).toString();
     }
 
     /**
