@@ -1,8 +1,7 @@
-package service;
+package other;
 
 import com.news.util.Utility;
 import junit.framework.Assert;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -15,22 +14,20 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class InternalErrorTest {
+public class ExtApiAccess {
 
     HttpUriRequest request;
 
     @Before
     public void setUp() throws HttpException {
-        request = new HttpGet(Utility.getProperty("headlines_test_url") + "?sources="
-                + RandomStringUtils.randomAlphabetic(3));
+        request = new HttpGet(Utility.getProperty("sources_url")
+                + Utility.getProperty("apikey_prefix") + Utility.getProperty("apikey_token"));
     }
 
     @Test
-    public void responseApi_InvQuery_InternalError() throws ClientProtocolException, IOException {
+    public void responseApi_Default_StatusOk() throws ClientProtocolException, IOException {
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
-
-        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),
-                HttpStatus.SC_INTERNAL_SERVER_ERROR);
+        Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
     }
 
 }

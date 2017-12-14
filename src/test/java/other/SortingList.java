@@ -1,4 +1,4 @@
-package service;
+package other;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SortingListTest {
+public class SortingList {
 
     String articles = "";
     ServiceCaller mockedCaller;

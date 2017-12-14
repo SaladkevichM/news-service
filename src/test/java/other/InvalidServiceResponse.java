@@ -1,4 +1,4 @@
-package service;
+package other;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceResponseInvalid {
+public class InvalidServiceResponse {
 
     ServiceCaller mockedCaller;
     HeadlineService service;

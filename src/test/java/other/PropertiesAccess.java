@@ -1,4 +1,4 @@
-package service;
+package other;
 
 import com.news.util.Utility;
 import junit.framework.Assert;
@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class PropertyAccessTest {
+public class PropertiesAccess {
 
     @Test
     public void Properties_File_WillBeOpened() {

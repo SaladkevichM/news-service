@@ -86,6 +86,19 @@
 			<version>${comm.coll.ver}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-grizzly2</artifactId>
+			<version>${jersey.ver}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey.jersey-test-framework</groupId>
+			<artifactId>jersey-test-framework-http</artifactId>
+			<version>${jersey.ver}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 </project>
