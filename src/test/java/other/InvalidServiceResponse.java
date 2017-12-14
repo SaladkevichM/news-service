@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import com.news.core.HeadlineService;
 import com.news.ext.ServiceCaller;
 import org.apache.http.HttpException;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -15,15 +14,9 @@ import java.util.Map;
 
 public class InvalidServiceResponse {
 
-    ServiceCaller mockedCaller;
-    HeadlineService service;
+    ServiceCaller mockedCaller = mock(ServiceCaller.class);
+    HeadlineService service = new HeadlineService(mockedCaller);
     Map<String, String> params = new HashMap<>();
-
-    @Before
-    public void setUp() throws Exception {
-        mockedCaller = mock(ServiceCaller.class);
-        service = new HeadlineService(mockedCaller);
-    }
 
     @Test
     public void getNews_InvalidJson_InternalError() throws HttpException {

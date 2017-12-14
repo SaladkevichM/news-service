@@ -22,17 +22,16 @@ import java.util.Map;
 public class SortingList {
 
     String articles = "";
-    ServiceCaller mockedCaller;
-    HeadlineService service;
+
+    ServiceCaller mockedCaller = mock(ServiceCaller.class);
+    HeadlineService service = new HeadlineService(mockedCaller);
     ObjectMapper mapper = new ObjectMapper();
     Map<String, String> params = new HashMap<>();
 
     @Before
     public void setUp() throws Exception {
-        mockedCaller = mock(ServiceCaller.class);
-        service = new HeadlineService(mockedCaller);
-        articles =
-                "{\"articles\":[{\"title\":\"2\",\"publishedAt\":\"2017-10-13T05:55:30Z\"},{\"title\":\"1\",\"publishedAt\":\"2017-11-13T07:33:42Z\"}]}";
+        articles = "{\"articles\":[{\"title\":\"2\",\"publishedAt\":\"2017-10-13T05:55:30Z\"},"
+                + "{\"title\":\"1\",\"publishedAt\":\"2017-11-13T07:33:42Z\"}]}";
     }
 
     @Test

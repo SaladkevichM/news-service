@@ -2,6 +2,7 @@ package rest;
 
 import static org.junit.Assert.*;
 
+import com.news.rest.Server;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.test.framework.JerseyTest;
 import org.apache.http.HttpStatus;
@@ -12,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 public class MediaTypeJson extends JerseyTest {
 
     public MediaTypeJson() {
-        super("com.news.rest");
+        super(Server.class.getPackage().getName());
     }
 
     @Test

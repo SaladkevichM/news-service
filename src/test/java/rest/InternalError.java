@@ -1,5 +1,6 @@
 package rest;
 
+import com.news.rest.Server;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.test.framework.JerseyTest;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -10,7 +11,7 @@ import org.junit.Test;
 public class InternalError extends JerseyTest {
 
     public InternalError() {
-        super("com.news.rest");
+        super(Server.class.getPackage().getName());
     }
 
     @Test
