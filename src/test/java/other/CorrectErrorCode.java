@@ -12,14 +12,14 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InvalidServiceResponse {
+public class CorrectErrorCode {
 
     ServiceCaller mockedCaller = mock(ServiceCaller.class);
     HeadlineService service = new HeadlineService(mockedCaller);
     Map<String, String> params = new HashMap<>();
 
     @Test
-    public void getNews_InvalidJson_InternalError() throws HttpException {
+    public void getNews_InvalidJson_CorrectErrorCode() throws HttpException {
         when(mockedCaller.sendRequest(service.getServiceURL())).thenReturn("%%%");
         service = new HeadlineService(mockedCaller);
         Map<String, String> map = service.getNews(params, null, null);
