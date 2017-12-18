@@ -1,5 +1,6 @@
 package com.news.core;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.news.beans.Article;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.core.Response;
 
@@ -52,7 +54,7 @@ public class HeadlineService implements ServiceURL {
 
             // newest posts are shown on top
             roll.sort((a1, a2) -> a2.getPublishedAt().compareTo(a1.getPublishedAt()));
-            result.put("result", mapper.writeValueAsString(Utility.getPage(roll, page, pageSize)));
+            result.put("result", getCustomJson(Utility.getPage(roll, page, pageSize)));
 
         } catch (ParseException | IOException | HttpException internalException) {
 
@@ -74,6 +76,18 @@ public class HeadlineService implements ServiceURL {
     public String getServiceURL() throws HttpException {
         return Utility.getProperty("headlines_url") + Utility.getProperty("apikey_prefix")
                 + Utility.getProperty("apikey_token");
+    }
+
+    /**
+     * Get custom JSON string from List<Article>
+     * 
+     * @return String json
+     * @throws JsonProcessingException
+     */
+    private String getCustomJson(List<Article> articles) throws JsonProcessingException {
+        Map<Map<String, String>, List<Article>> groups =
+                articles.stream().collect(Collectors.groupingBy(Article::getSource));
+        return mapper.writeValueAsString(groups);
     }
 
 }
