@@ -1,3 +1,5 @@
+![Alt text](https://api.travis-ci.org/SaladkevichM/news-service.svg?branch=master)
+
 #HOW TO USE
 
 GET http://localhost:8080/service/news?sources=bbc-news<br/>   http://localhost:8080/service/news?sources=bbc-news,abc-news&page=2&page_size=3
